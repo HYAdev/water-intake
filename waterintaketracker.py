@@ -8,11 +8,36 @@ root.title("Water Intake Tracker") #name of the app, shows up at the top
 # Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
 # Robert: c:\Users\rflor\Downloads\blackbottle.png
 # Kyra: c:\Users\kyra\Downloads\blackbottle.png
-photo = tk.PhotoImage(file= r"c:\Users\kyra\Downloads\blackbottle.png") #waterbottle png
-cv = tk.Canvas()
-cv.pack(side='top', fill='both', expand='yes')
-cv.create_image(50, 50, image=photo, anchor='nw')
 # root.config(bg="#99A2BA") TO ADD BG COLOR (ON HOLD)
+
+def update_image():
+    global sum, goal
+
+    sum_percent = sum / goal if goal != 0 else 0.0
+
+    if 0.25 <= sum_percent < 0.5:
+        canvas.itemconfig(image_on_canvas, image=quarter_filled_bottle)
+    elif 0.5 <= sum_percent < 0.75:
+        canvas.itemconfig(image_on_canvas, image=half_filled_bottle)
+    elif 0.75 <= sum_percent < 1:
+        canvas.itemconfig(image_on_canvas, image=three_quarter_filled_bottle)
+    elif sum_percent >= 1:
+        canvas.itemconfig(image_on_canvas, image=full_bottle)
+    else:
+        canvas.itemconfig(image_on_canvas, image=empty_bottle)
+
+
+
+empty_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\blackbottle.png")
+quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle25.png")
+half_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle50.png")
+three_quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle75.png")
+full_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle100.png")
+
+canvas = tk.Canvas(root, width=200, height=300)
+canvas.pack(side='top', fill='both', expand='yes')
+
+image_on_canvas = canvas.create_image(50, 50, image = empty_bottle, anchor='nw')
 
 ###############################################MENUBAR#######################################################################
 #like create a button, which links to a function, and that function should create a new window and pack() 
@@ -55,7 +80,7 @@ if sum >= goal:
 frame1 = tk.Frame(root)
 frame1.pack(pady=10)
 
-text_label = tk.Label(frame1, text="Enter Number of Oz you drank:")
+text_label = tk.Label(frame1, text="Enter number of oz you drank:")
 text_label.grid(row=0, column=0)
 
 text_entry = tk.Entry(frame1)
@@ -275,6 +300,9 @@ mins.pack(side=LEFT)
  
 
 Button(root,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(pady=20)
+
+
  
 
 root.mainloop()
+
