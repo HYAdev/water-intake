@@ -3,7 +3,7 @@ import tkinter as tk
 root = tk.Tk()
 
 root.geometry("600x960") #how big is the window
-
+###########################################WATERBOTTLE#########################################################################
 root.title("Water Intake Tracker") #name of the app, shows up at the top
 photo = tk.PhotoImage(file= r"c:\Users\kyra\Downloads\blackbottle.png") #waterbottle png
 cv = tk.Canvas()
@@ -11,6 +11,7 @@ cv.pack(side='top', fill='both', expand='yes')
 cv.create_image(100, 100, image=photo, anchor='nw')
 # root.config(bg="#99A2BA") TO ADD BG COLOR (ON HOLD)
 
+##########################################USERINPUT##########################################################################
 import tkinter as tk
 
 sum = 0
@@ -53,7 +54,7 @@ text_label.grid(row=0, column=0)
 
 text_entry = tk.Entry(frame1)
 text_entry.grid(row=0, column=1)
-
+#################################################CALCULATOR###################################################################
 
 from tkinter import *
 from tkinter import messagebox
@@ -176,7 +177,7 @@ exit_btn = Button( #destroys the pop up
     command=lambda:root.destroy()
 )
 exit_btn.pack(side=RIGHT)
-
+################################################ALARM####################################################################
 
 from tkinter import *
 import datetime
