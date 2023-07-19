@@ -2,7 +2,7 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.geometry("600x960") #how big is the window
+root.geometry("600x990") #how big is the window
 ###########################################WATERBOTTLE#########################################################################
 root.title("Water Intake Tracker") #name of the app, shows up at the top
 # Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
@@ -22,7 +22,7 @@ goal = 0 #goal will be depending on what the user inputs from the calculator
 
 def submit():
     global sum  # made global so it can be used everywhere
-    entered_oz = int(text_entry.get())  
+    entered_oz = int(float(text_entry.get())) 
     sum += entered_oz  # Adds entered_oz to the sum
     print(sum)  #within context of the Water Tracker, instead of printing to the terminal we can have a text box w the 'sum' variable so it changes depending on inputs
 
@@ -57,6 +57,12 @@ text_label.grid(row=0, column=0)
 
 text_entry = tk.Entry(frame1)
 text_entry.grid(row=0, column=1)
+
+submit_button = tk.Button(root, text="Submit", command=submit) #makes submit button work
+submit_button.pack(pady=1)
+
+Lower_left = tk.Label(root, text="Water Calculator", font=("Helvetica 15 bold"), fg="#001853") #text change position 
+Lower_left.pack(pady=1)
 #################################################CALCULATOR###################################################################
 
 from tkinter import *
@@ -89,8 +95,7 @@ frame = Frame(
 frame.pack(expand=False)
 
 
-Lower_left = tk.Label(root,text="Water Calculator",font=("Helvetica 15 bold"),fg="#001853") #labels
-Lower_left.place(relx = 0.35, rely = 0.63, anchor ='sw')
+
 
 
 age_lb = Label( #displays the text below
