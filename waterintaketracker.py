@@ -8,7 +8,7 @@ root.title("Water Intake Tracker") #name of the app, shows up at the top
 # Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
 # Robert: c:\Users\rflor\Downloads\blackbottle.png
 # Kyra: c:\Users\kyra\Downloads\blackbottle.png
-photo = tk.PhotoImage(file= r"c:\Users\kyra\Downloads\blackbottle.png") #waterbottle png
+photo = tk.PhotoImage(file= r"c:\Users\rflor\Downloads\blackbottle.png") #waterbottle png
 cv = tk.Canvas()
 cv.pack(side='top', fill='both', expand='yes')
 cv.create_image(100, 100, image=photo, anchor='nw')
@@ -25,7 +25,7 @@ def submit():
     entered_oz = int(float(text_entry.get())) 
     sum += entered_oz  # Adds entered_oz to the sum
     print(sum)  #within context of the Water Tracker, instead of printing to the terminal we can have a text box w the 'sum' variable so it changes depending on inputs
-
+    sum_label.config(text= 'Daily Water Intake: ' + str(sum))
 
 
 
@@ -61,6 +61,9 @@ text_entry.grid(row=0, column=1)
 submit_button = tk.Button(root, text="Submit", command=submit) #makes submit button work
 submit_button.pack(pady=1)
 
+sum_label = tk.Label(root, text='Daily Water Intake: '+ str(sum))  # Label to display the sum
+sum_label.pack(pady=1)
+
 Lower_left = tk.Label(root, text="Water Calculator", font=("Helvetica 15 bold"), fg="#001853") #text change position 
 Lower_left.pack(pady=1)
 #################################################CALCULATOR###################################################################
@@ -75,6 +78,7 @@ def reset_entry():
 def calculate_water():
     lb = int(weight_tf.get()) #sets the weight variable
     e = int(float(exercise_tf.get())) #sets exercise variable
+    global water
     water = (lb*(2/3))+(12*(e/30)) #water oz formula
     water = round(water, 1)
     water_index(water)
@@ -83,6 +87,8 @@ def water_index(water): #makes the popup that tells how much water u should drin
     
     if water > 0:
         messagebox.showinfo('Water Intake Tracker', f'suggested daily hydration = {water} oz') 
+        global waterGoal
+        water = waterGoal
 
 
 var = IntVar()
