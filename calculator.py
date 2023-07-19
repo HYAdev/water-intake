@@ -7,8 +7,8 @@ def reset_entry():
 
 def calculate_water():
     lb = int(weight_tf.get())
-    e = int(exercise_tf.get())
-    water = (lb*2/3)+(12*e/30)
+    e = int(float(exercise_tf.get()))
+    water = (lb*(2/3))+(12*(e/30))
     water = round(water, 1)
     water_index(water)
 
@@ -88,11 +88,6 @@ weight_lb = Label(
 
 )
 weight_lb.grid(row=4, column=1)
-
-height_tf = Entry(
-    frame,
-)
-height_tf.grid(row=3, column=2, pady=5)
 
 weight_tf = Entry(
     frame,
