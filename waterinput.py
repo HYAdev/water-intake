@@ -1,15 +1,19 @@
 import tkinter as tk
 
+
 sum = 0
 goal = 0 #goal will be depending on what the user inputs from the calculator
 
 def submit():
-    global sum  # made global so it can be used everywhere
+    global sum
+     # made global so it can be used everywhere
     entered_oz = int(text_entry.get())  
     sum += entered_oz  # Adds entered_oz to the sum
+    int(sum)
     print(sum)  #within context of the Water Tracker, instead of printing to the terminal we can have a text box w the 'sum' variable so it changes depending on inputs
+    sum_label.config(text=sum)
 
-
+    
 
 
 if sum >= goal/4 and sum < goal/2:
@@ -42,5 +46,7 @@ text_entry.pack()
 submit_button = tk.Button(popup, text="Submit", command=submit)
 submit_button.pack()
 
-popup.mainloop()
+sum_label = tk.Label(popup, text='0')  # Label to display the sum
+sum_label.pack()
 
+popup.mainloop()
