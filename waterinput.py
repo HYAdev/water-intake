@@ -7,7 +7,7 @@ goal = 0 #goal will be depending on what the user inputs from the calculator
 
 def submit():
     global sum  # made global so it can be used everywhere
-    
+    entered_oz = int(text_entry.get())  
     sum += entered_oz  # Adds entered_oz to the sum
     print(sum)  #within context of the Water Tracker, instead of printing to the terminal we can have a text box w the 'sum' variable so it changes depending on inputs
    
