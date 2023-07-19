@@ -2,8 +2,10 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.title("Water Intake Tracker")
-photo = tk.PhotoImage(file= r"c:\Users\kyra\Downloads\blackbottle.png")
+root.geometry("600x950") #how big is the window
+
+root.title("Water Intake Tracker") #name of the app, shows up at the top
+photo = tk.PhotoImage(file= r"c:\Users\kyra\Downloads\blackbottle.png") #waterbottle png
 cv = tk.Canvas()
 cv.pack(side='top', fill='both', expand='yes')
 cv.create_image(100, 100, image=photo, anchor='nw')
@@ -17,13 +19,13 @@ def reset_entry():
     weight_tf.delete(0,'end')
 
 def calculate_water():
-    lb = int(weight_tf.get())
-    e = int(float(exercise_tf.get()))
-    water = (lb*(2/3))+(12*(e/30))
+    lb = int(weight_tf.get()) #sets the weight variable
+    e = int(float(exercise_tf.get())) #sets exercise variable
+    water = (lb*(2/3))+(12*(e/30)) #water oz formula
     water = round(water, 1)
     water_index(water)
 
-def water_index(water):
+def water_index(water): #makes the popup that tells how much water u should drink, isnt necessary to have the > 0 but it was easier for me
     
     if water > 0:
         messagebox.showinfo('Water Intake Tracker', f'suggested daily hydration = {water} oz') 
@@ -36,16 +38,20 @@ frame = Frame(
     padx=10, 
     pady=10
 )
-frame.pack(expand=True)
+frame.pack(expand=False)
 
 
-age_lb = Label(
+Lower_left = tk.Label(root,text="Water Calculator",font=("Helvetica 15 bold"),fg="#001853") #labels
+Lower_left.place(relx = 0.35, rely = 0.6, anchor ='sw')
+
+
+age_lb = Label( #displays the text below
     frame,
     text="Enter Age (2 - 120)"
 )
-age_lb.grid(row=1, column=1)
+age_lb.grid(row=1, column=1) #where it is
 
-age_tf = Entry(
+age_tf = Entry( #adds the input box
     frame, 
 )
 age_tf.grid(row=1, column=2, pady=5)
@@ -106,21 +112,21 @@ frame3 = Frame(
 )
 frame3.grid(row=6, columnspan=3, pady=10)
 
-cal_btn = Button(
+cal_btn = Button( #calculates how jmuch water needed when the button is pressed
     frame3,
     text='Calculate',
     command=calculate_water
 )
 cal_btn.pack(side=LEFT)
 
-reset_btn = Button(
+reset_btn = Button( #resets all the inputs 
     frame3,
     text='Reset',
     command=reset_entry
 )
 reset_btn.pack(side=LEFT)
 
-exit_btn = Button(
+exit_btn = Button( #destroys the pop up
     frame3,
     text='Exit',
     command=lambda:root.destroy()
@@ -134,8 +140,6 @@ import time
 import winsound
 from threading import *
  
-
-root.geometry("600x700")
  
 
 def Threading():
@@ -146,27 +150,27 @@ def alarm():
     
     while True:
         
-        set_alarm_time = f"{hour.get()}:{minute.get()}"
+        set_alarm_time = f"{hour.get()}:{minute.get()}" #gets the time
  
         
         time.sleep(1)
  
         
-        current_time = datetime.datetime.now().strftime("%H:%M")
+        current_time = datetime.datetime.now().strftime("%H:%M") #Hour and minute
  
         
-        if current_time == set_alarm_time:
+        if current_time == set_alarm_time: #kinda self explanatory 
             winsound.PlaySound("sound.wav",winsound.SND_ASYNC)
             break
  
 
-Label(root,text="Hydration Reminder",font=("Helvetica 20 bold"),fg="#001853").pack(pady=10)
+Label(root,text="Hydration Reminder",font=("Helvetica 15 bold"),fg="#001853").pack(pady=10) #labels
 Label(root,text="Set Time",font=("Helvetica 15 bold")).pack()
  
 frame = Frame(root)
 frame.pack()
  
-hour = StringVar(root)
+hour = StringVar(root) #drop down menu for hours. 24 hrs 
 hours = ('00', '01', '02', '03', '04', '05', '06', '07',
          '08', '09', '10', '11', '12', '13', '14', '15',
          '16', '17', '18', '19', '20', '21', '22', '23', '24'
@@ -176,7 +180,7 @@ hour.set(hours[0])
 hrs = OptionMenu(frame, hour, *hours)
 hrs.pack(side=LEFT)
  
-minute = StringVar(root)
+minute = StringVar(root) # droip down menu for minutes. 60 minutes per hour
 minutes = ('00', '01', '02', '03', '04', '05', '06', '07',
            '08', '09', '10', '11', '12', '13', '14', '15',
            '16', '17', '18', '19', '20', '21', '22', '23',
