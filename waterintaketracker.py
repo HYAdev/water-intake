@@ -2,7 +2,7 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.geometry("600x950") #how big is the window
+root.geometry("600x960") #how big is the window
 
 root.title("Water Intake Tracker") #name of the app, shows up at the top
 photo = tk.PhotoImage(file= r"c:\Users\kyra\Downloads\blackbottle.png") #waterbottle png
@@ -45,14 +45,14 @@ if sum >= goal:
 
 
 
-text_label = tk.Label(root, text="Enter Number of Oz you drank:")
-text_label.pack()
+frame1 = tk.Frame(root)
+frame1.pack(pady=10)
 
-text_entry = tk.Entry(root)
-text_entry.pack()
+text_label = tk.Label(frame1, text="Enter Number of Oz you drank:")
+text_label.grid(row=0, column=0)
 
-submit_button = tk.Button(root, text="Submit", command=submit)
-submit_button.pack()
+text_entry = tk.Entry(frame1)
+text_entry.grid(row=0, column=1)
 
 
 from tkinter import *
@@ -86,7 +86,7 @@ frame.pack(expand=False)
 
 
 Lower_left = tk.Label(root,text="Water Calculator",font=("Helvetica 15 bold"),fg="#001853") #labels
-Lower_left.place(relx = 0.35, rely = 0.6, anchor ='sw')
+Lower_left.place(relx = 0.35, rely = 0.63, anchor ='sw')
 
 
 age_lb = Label( #displays the text below
@@ -154,7 +154,7 @@ weight_tf.grid(row=4, column=2, pady=5)
 frame3 = Frame(
     frame
 )
-frame3.grid(row=6, columnspan=3, pady=10)
+frame3.grid(row=8, columnspan=3, pady=10)
 
 cal_btn = Button( #calculates how jmuch water needed when the button is pressed
     frame3,
@@ -239,7 +239,7 @@ mins = OptionMenu(frame, minute, *minutes)
 mins.pack(side=LEFT)
  
 
-Button(root,text="Set Reminder",font=("Helvetica 15"),command=Threading).pack(pady=20)
+Button(root,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(pady=20)
  
 
 root.mainloop()
