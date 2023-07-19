@@ -2,7 +2,7 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.geometry("600x1000") #how big is the window
+root.geometry("500x950") #how big is the window
 ###########################################WATERBOTTLE#########################################################################
 root.title("Water Intake Tracker") #name of the app, shows up at the top
 # Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
@@ -11,8 +11,11 @@ root.title("Water Intake Tracker") #name of the app, shows up at the top
 photo = tk.PhotoImage(file= r"c:\Users\kyra\Downloads\blackbottle.png") #waterbottle png
 cv = tk.Canvas()
 cv.pack(side='top', fill='both', expand='yes')
-cv.create_image(100, 100, image=photo, anchor='nw')
+cv.create_image(50, 50, image=photo, anchor='nw')
 # root.config(bg="#99A2BA") TO ADD BG COLOR (ON HOLD)
+
+###############################################MENUBAR#######################################################################
+#like create a button, which links to a function, and that function should create a new window and pack() 
 
 ##########################################USERINPUT##########################################################################
 import tkinter as tk
@@ -205,6 +208,8 @@ def Threading():
     t1=Thread(target=alarm)
     t1.start()
  
+
+from twilio.rest import Client
 def alarm():
     
     while True:
@@ -219,6 +224,20 @@ def alarm():
  
         
         if current_time == set_alarm_time: #kinda self explanatory 
+            
+
+            # Your Account SID and Auth Token from console.twilio.com
+            account_sid = "AC189a5cc4f644e8cb6f52b29d95e4d2fe"
+            auth_token  = "3bdb0433f69c8a8d04f3603396d85da6"
+
+            client = Client(account_sid, auth_token)
+
+            message = client.messages.create(
+            to="+19514810480",
+            from_="+18332943083",
+            body="it's time to hydrate!")
+
+            print(message.sid)
             winsound.PlaySound("sound.wav",winsound.SND_ASYNC)
             break
  
@@ -252,6 +271,7 @@ minute.set(minutes[0])
  
 mins = OptionMenu(frame, minute, *minutes)
 mins.pack(side=LEFT)
+
  
 
 Button(root,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(pady=20)
