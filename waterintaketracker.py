@@ -2,13 +2,13 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.geometry("600x990") #how big is the window
+root.geometry("600x1000") #how big is the window
 ###########################################WATERBOTTLE#########################################################################
 root.title("Water Intake Tracker") #name of the app, shows up at the top
 # Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
 # Robert: c:\Users\rflor\Downloads\blackbottle.png
 # Kyra: c:\Users\kyra\Downloads\blackbottle.png
-photo = tk.PhotoImage(file= r"c:\Users\rflor\Downloads\blackbottle.png") #waterbottle png
+photo = tk.PhotoImage(file= r"c:\Users\kyra\Downloads\blackbottle.png") #waterbottle png
 cv = tk.Canvas()
 cv.pack(side='top', fill='both', expand='yes')
 cv.create_image(100, 100, image=photo, anchor='nw')
