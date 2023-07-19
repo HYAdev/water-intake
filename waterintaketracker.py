@@ -2,31 +2,31 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.geometry("600x950") #how big is the window
-
+root.geometry("600x990") #how big is the window
+###########################################WATERBOTTLE#########################################################################
 root.title("Water Intake Tracker") #name of the app, shows up at the top
-photo = tk.PhotoImage(file= r"c:\Users\rflor\Downloads\blackbottle.png") #waterbottle png
+# Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
+# Robert: c:\Users\rflor\Downloads\blackbottle.png
+# Kyra: c:\Users\kyra\Downloads\blackbottle.png
+photo = tk.PhotoImage(file= r"c:\Users\kyra\Downloads\blackbottle.png") #waterbottle png
 cv = tk.Canvas()
 cv.pack(side='top', fill='both', expand='yes')
 cv.create_image(100, 100, image=photo, anchor='nw')
 # root.config(bg="#99A2BA") TO ADD BG COLOR (ON HOLD)
 
+##########################################USERINPUT##########################################################################
 import tkinter as tk
 
 sum = 0
 goal = 0 #goal will be depending on what the user inputs from the calculator
 
-
-
 def submit():
     global sum  # made global so it can be used everywhere
-    entered_oz = int(text_entry.get())  
+    entered_oz = int(float(text_entry.get())) 
     sum += entered_oz  # Adds entered_oz to the sum
     print(sum)  #within context of the Water Tracker, instead of printing to the terminal we can have a text box w the 'sum' variable so it changes depending on inputs
 
-    global text_label 
-    text_label = tk.Label(root, text=str(sum))
-    text_label.pack()
+
 
 
 if sum >= goal/4 and sum < goal/2:
@@ -52,16 +52,18 @@ if sum >= goal:
 frame1 = tk.Frame(root)
 frame1.pack(pady=10)
 
-text_label = tk.Label(frame1, text="Enter # of Oz you drank:")
+text_label = tk.Label(frame1, text="Enter Number of Oz you drank:")
 text_label.grid(row=0, column=0)
 
 text_entry = tk.Entry(frame1)
 text_entry.grid(row=0, column=1)
 
-submit_button = tk.Button(root, text="Submit", command=submit)
-submit_button.pack()
+submit_button = tk.Button(root, text="Submit", command=submit) #makes submit button work
+submit_button.pack(pady=1)
 
-
+Lower_left = tk.Label(root, text="Water Calculator", font=("Helvetica 15 bold"), fg="#001853") #text change position 
+Lower_left.pack(pady=1)
+#################################################CALCULATOR###################################################################
 
 from tkinter import *
 from tkinter import messagebox
@@ -93,8 +95,7 @@ frame = Frame(
 frame.pack(expand=False)
 
 
-Lower_left = tk.Label(root,text="Water Calculator",font=("Helvetica 15 bold"),fg="#001853") #labels
-Lower_left.place(relx = 0.35, rely = 0.6, anchor ='sw')
+
 
 
 age_lb = Label( #displays the text below
@@ -162,7 +163,7 @@ weight_tf.grid(row=4, column=2, pady=5)
 frame3 = Frame(
     frame
 )
-frame3.grid(row=6, columnspan=3, pady=10)
+frame3.grid(row=8, columnspan=3, pady=10)
 
 cal_btn = Button( #calculates how jmuch water needed when the button is pressed
     frame3,
@@ -184,7 +185,7 @@ exit_btn = Button( #destroys the pop up
     command=lambda:root.destroy()
 )
 exit_btn.pack(side=RIGHT)
-
+################################################ALARM####################################################################
 
 from tkinter import *
 import datetime
@@ -247,7 +248,7 @@ mins = OptionMenu(frame, minute, *minutes)
 mins.pack(side=LEFT)
  
 
-Button(root,text="Set Reminder",font=("Helvetica 15"),command=Threading).pack(pady=20)
+Button(root,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(pady=20)
  
 
 root.mainloop()
