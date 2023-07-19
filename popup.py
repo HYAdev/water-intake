@@ -5,6 +5,9 @@ from tkinter import messagebox
 root = tk.Tk()
 
 root.title("Water Intake Tracker")
+# Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
+# Robert: c:\Users\rflor\Downloads\blackbottle.png
+# Kyra: c:\Users\kyra\Downloads\blackbottle.png
 photo = tk.PhotoImage(file= r"c:\Users\rflor\Downloads\blackbottle.png")
 cv = tk.Canvas()
 cv.pack(side='top', fill='both', expand='yes')
