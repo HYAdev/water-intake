@@ -21,27 +21,51 @@ def update_image():
 
     sum_percent = sum / goal if goal != 0 else 1
 
-    if sum_percent >= 0.25 and sum_percent < 0.5:
-        canvas.itemconfig(image_on_canvas, image=quarter_filled_bottle)
+    if sum_percent >= 0.125 and sum_percent < 0.25:
+        canvas.itemconfig(image_on_canvas, image= one_eighth_bottle)
         print('Water bottle at: 25')
         print(goal) 
 
-    elif sum_percent >= 0.5 and sum_percent < 0.75:
-        canvas.itemconfig(image_on_canvas, image=half_filled_bottle)
+    
+    
+    elif sum_percent >= 0.25 and sum_percent < 0.375:
+        canvas.itemconfig(image_on_canvas, image=quarter_filled_bottle)
+
+
+
+    elif sum_percent >= 0.375 and sum_percent < 0.5:
+        canvas.itemconfig(image_on_canvas, image=three_eighth_bottle)
         print('Water bottle at: 50')
         print(goal) 
-        
-    elif sum_percent >= 0.75 and sum_percent < 1.0:
-        canvas.itemconfig(image_on_canvas, image=three_quarter_filled_bottle)
+
+
+
+    elif sum_percent >= 0.5 and sum_percent < 0.625:
+        canvas.itemconfig(image_on_canvas, image=half_filled_bottle)
+
+
+
+    elif sum_percent >= 0.625 and sum_percent < 0.75:
+        canvas.itemconfig(image_on_canvas, image=five_eighth_bottle)
         print('Water bottle at: 75')
         print(goal) 
 
-    elif sum_percent >= 1:
-        canvas.itemconfig(image_on_canvas, image=full_bottle)
+
+
+    elif sum_percent >= 0.75 and sum_percent < 0.875:
+        canvas.itemconfig(image_on_canvas, image=three_quarter_filled_bottle)
+
+
+
+    elif sum_percent >= 0.875 and sum_percent < 1.0:
+        canvas.itemconfig(image_on_canvas, image=seven_eighth_bottle)
         print('Water bottle at: 100')
         print(goal) 
 
-    elif sum_percent < 0.25:
+    elif sum_percent >= 1.0:
+        canvas.itemconfig(image_on_canvas, image=full_bottle)
+
+    elif sum_percent < 0.125:
         canvas.itemconfig(image_on_canvas, image=empty_bottle)
         print('Water bottle at: empty')
         print(sum_percent)    
@@ -51,9 +75,13 @@ def update_image():
     
 
 empty_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\blackbottle.png")
+one_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-eighth.png")
 quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle25.png")
+three_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-3-eighth.png")
 half_filled_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle50.png")
+five_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-5-eighth.png")
 three_quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle75.png")
+seven_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-7-eighth.png")
 full_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle100.png")
 
 canvas = tk.Canvas(root, width=200, height=300)
