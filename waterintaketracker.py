@@ -41,7 +41,7 @@ def update_image():
 
     elif sum_percent < 0.25:
         canvas.itemconfig(image_on_canvas, image=empty_bottle)
-        print('ater bottle at: empty')
+        print('Water bottle at: empty')
         print(sum_percent)    
 
 
@@ -55,6 +55,7 @@ canvas = tk.Canvas(root, width=200, height=300)
 canvas.pack(side='top', fill='both', expand='yes')
 
 image_on_canvas = canvas.create_image(100, 0, image = empty_bottle, anchor='nw') #had to change the coords cus the water bottle was blocked for me
+
 
 
 ##########################################USERINPUT##########################################################################
@@ -76,7 +77,7 @@ def submit():
 frame1 = tk.Frame(root)
 frame1.pack(pady=10)
 
-text_label = tk.Label(frame1, text="Enter Number of Oz you drank:")
+text_label = tk.Label(frame1, text="Enter number of oz you drank:")
 text_label.grid(row=0, column=0)
 
 text_entry = tk.Entry(frame1)
@@ -236,6 +237,8 @@ def Threading():
     t1=Thread(target=alarm)
     t1.start()
  
+
+from twilio.rest import Client
 def alarm():
     
     while True:
@@ -250,6 +253,20 @@ def alarm():
  
         
         if current_time == set_alarm_time: #kinda self explanatory 
+            
+
+            # Your Account SID and Auth Token from console.twilio.com
+            account_sid = "AC189a5cc4f644e8cb6f52b29d95e4d2fe"
+            auth_token  = "3bdb0433f69c8a8d04f3603396d85da6"
+
+            client = Client(account_sid, auth_token)
+
+            message = client.messages.create(
+            to="+19514810480",
+            from_="+18332943083",
+            body="it's time to hydrate!")
+
+            print(message.sid)
             winsound.PlaySound("sound.wav",winsound.SND_ASYNC)
             break
  
@@ -283,9 +300,12 @@ minute.set(minutes[0])
  
 mins = OptionMenu(frame, minute, *minutes)
 mins.pack(side=LEFT)
+
  
 
 Button(root,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(pady=20)
+
+
  
 
 root.mainloop()
@@ -294,4 +314,6 @@ root.mainloop()
 
 
 ######################
+
+
 
