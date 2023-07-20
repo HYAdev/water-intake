@@ -2,7 +2,7 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.geometry("600x950") #how big is the window
+root.geometry("600x900") #how big is the window
 ###########################################WATERBOTTLE#########################################################################
 root.title("Water Intake Tracker") #name of the app, shows up at the top
 # Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
@@ -74,15 +74,15 @@ def update_image():
     return sum_percent
     
 
-empty_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\blackbottle.png")
-one_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-eighth.png")
-quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle25.png")
-three_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-3-eighth.png")
-half_filled_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle50.png")
-five_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-5-eighth.png")
-three_quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle75.png")
-seven_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-7-eighth.png")
-full_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle100.png")
+empty_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\blackbottle.png")
+one_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-eighth.png")
+quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle25.png")
+three_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-3-eighth.png")
+half_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle50.png")
+five_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-5-eighth.png")
+three_quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle75.png")
+seven_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-7-eighth.png")
+full_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle100.png")
 
 canvas = tk.Canvas(root, width=200, height=300)
 canvas.pack(side='top', fill='both', expand='yes')
@@ -312,22 +312,18 @@ def alarm():
  
         
         if current_time == set_alarm_time: #kinda self explanatory 
+            account_sid = "enter sid"
+            auth_token  = "enter auth"
+            global pnumber
+            client = Client(account_sid, auth_token)
+            message = client.messages.create(
+    body="DRINK WATER", from_="+18332943083", to='+'+ pnumber
+  )
             
 
-            # Your Account SID and Auth Token from console.twilio.com
-            account_sid = "AC189a5cc4f644e8cb6f52b29d95e4d2fe"
-            auth_token  = "3bdb0433f69c8a8d04f3603396d85da6"
-
-            client = Client(account_sid, auth_token)
-
-            message = client.messages.create(
-            to="+19514810480",
-            from_="+18332943083",
-            body="it's time to hydrate!")
-
-            print(message.sid)
-            winsound.PlaySound("sound.wav",winsound.SND_ASYNC)
+            
             break
+
  
 
 Label(root,text="Hydration Reminder",font=("Helvetica 15 bold"),fg="#001853").pack(pady=10) #labels
@@ -360,9 +356,30 @@ minute.set(minutes[0])
 mins = OptionMenu(frame, minute, *minutes)
 mins.pack(side=LEFT)
 
- 
+pnumber = " "
 
-Button(root,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(pady=20)
+def send_message():
+    global pnumber
+    pnumber = number.get()
+    if not pnumber.strip(): #checks and see if pnumber is empty
+      print("Enter a valid phone number")
+    print(pnumber)
+
+
+
+
+label = tk.Label(root, text='Enter your phone number')
+number = tk.Entry(root)
+number.focus_set()
+send_text = tk.Button(root, text='Submit', command=send_message).pack(pady = 5)
+
+
+
+
+label.pack(side = tk.TOP)
+number.pack()
+
+Button(root,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(pady=10)
 
 
  
