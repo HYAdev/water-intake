@@ -2,7 +2,7 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.geometry("600x930") #how big is the window
+root.geometry("400x750") #how big is the window
 ###########################################WATERBOTTLE#########################################################################
 
 
@@ -142,7 +142,6 @@ def new_window2():
 )
     reset_btn.pack(side=LEFT)
 
-root.geometry("410x580")
 
 message_label = Label(root, text="                  ", 
 wraplength=20)
@@ -242,7 +241,7 @@ full_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle100.png")
 canvas = tk.Canvas(root, width=200, height=300)
 canvas.pack(side='top', fill='both', expand='yes')
 
-image_on_canvas = canvas.create_image(100, 0, image = empty_bottle, anchor='nw') #had to change the coords cus the water bottle was blocked for me
+image_on_canvas = canvas.create_image(10, 0, image = empty_bottle, anchor='nw') #had to change the coords cus the water bottle was blocked for me
 
 
 
@@ -304,7 +303,7 @@ import time
 import winsound
 from threading import *
  
- 
+import pygame.mixer
 
 def Threading():
     t1=Thread(target=alarm)
@@ -326,6 +325,13 @@ def alarm():
  
         
         if current_time == set_alarm_time: #kinda self explanatory 
+            pygame.mixer.init()
+            pygame.mixer.music.load('notification.mp3')
+            pygame.mixer.music.play()
+
+            # allows the file to finish playing
+            while pygame.mixer.music.get_busy():
+                pygame.time.Clock().tick(10)
             account_sid = "enter sid"
             auth_token  = "enter auth"
             global pnumber
@@ -334,9 +340,7 @@ def alarm():
     body="DRINK WATER", from_="+18332943083", to='+'+ pnumber
   )
             
-
-            
-            break
+ 
 
  
 

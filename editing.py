@@ -23,6 +23,8 @@ import tkinter as tk
 from twilio.rest import Client
 root = Tk() # Creates the window
 root.title("Water Intake Tracker")
+import pygame.mixer
+
 
 
 def new_window(): 
@@ -48,6 +50,13 @@ def new_window():
  
         
             if current_time == set_alarm_time: #kinda self explanatory 
+                pygame.mixer.init()
+                pygame.mixer.music.load('notification.mp3')
+                pygame.mixer.music.play()
+
+                # allows the file to finish playing
+                while pygame.mixer.music.get_busy():
+                    pygame.time.Clock().tick(10)
                 account_sid = "enter sid"
                 auth_token  = "enter auth"
                 global pnumber
@@ -62,24 +71,24 @@ def new_window():
 
  
 
-    Label(newWindow,text="Hydration Reminder",font=("Helvetica 15 bold"),fg="#001853").pack(pady = 2) #labels
-    Label(newWindow,text="Set Time",font=("Helvetica 10 bold")).pack()
+    Label(root,text="Hydration Reminder",font=("Helvetica 15 bold"),fg="#001853").pack(pady = 2) #labels
+    Label(root,text="Set Time",font=("Helvetica 10 bold")).pack()
  
     frame = Frame(
         newWindow, padx=10, pady=10)
     frame.pack(expand= False)
  
-    hour = StringVar(newWindow) #drop down menu for hours. 24 hrs 
+    hour = StringVar(root) #drop down menu for hours. 24 hrs 
     hours = ('00', '01', '02', '03', '04', '05', '06', '07',
          '08', '09', '10', '11', '12', '13', '14', '15',
          '16', '17', '18', '19', '20', '21', '22', '23', '24'
         )
     hour.set(hours[0])
  
-    hrs = OptionMenu(newWindow, hour, *hours)
+    hrs = OptionMenu(frame, hour, *hours)
     hrs.pack(side=LEFT)
  
-    minute = StringVar(newWindow) # droip down menu for minutes. 60 minutes per hour
+    minute = StringVar(root) # droip down menu for minutes. 60 minutes per hour
     minutes = ('00', '01', '02', '03', '04', '05', '06', '07',
            '08', '09', '10', '11', '12', '13', '14', '15',
            '16', '17', '18', '19', '20', '21', '22', '23',
@@ -90,7 +99,7 @@ def new_window():
            '56', '57', '58', '59', '60')
     minute.set(minutes[0])
  
-    mins = OptionMenu(newWindow, minute, *minutes)
+    mins = OptionMenu(frame, minute, *minutes)
     mins.pack(side=LEFT)
 
     pnumber = " "
@@ -102,13 +111,13 @@ def new_window():
             print("Enter a valid phone number")
             print(pnumber)
 
-    Button(newWindow,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(side= BOTTOM, pady=5)
+    Button(root,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(side= BOTTOM, pady=5)
 
 
-    label = tk.Label(newWindow, text='Enter your phone number(include country code)')
-    number = tk.Entry(newWindow)
+    label = tk.Label(root, text='Enter your phone number(include country code)')
+    number = tk.Entry(root)
     number.focus_set()
-    send_text = tk.Button(newWindow, text='Submit', command=send_message).pack(side=BOTTOM, padx=1, pady=5)
+    send_text = tk.Button(root, text='Submit', command=send_message).pack(side=BOTTOM, padx=1, pady=5)
 
 
 
