@@ -1,24 +1,16 @@
+import tkinter as tk
 
+root = tk.Tk()
 
-from tkinter import *
-from tkinter import ttk
-
-from tkinter import *
-from tkinter import messagebox
+root.geometry("400x570") #how big is the window
+#################################################ALARM###################################################################
 
 from tkinter import *
 import datetime
 import time
+import winsound
 from threading import *
 from twilio.rest import Client
-# User Interface Code
-
-
- 
-import tkinter as tk
-from twilio.rest import Client
-root = Tk() # Creates the window
-root.title("Water Intake Tracker")
 import pygame.mixer
 
 def new_window(): 
@@ -125,12 +117,16 @@ def new_window():
    label.pack(side = tk.TOP)
    number.pack()
 
-
 from tkinter import *
 from tkinter import messagebox
 
+#################################################CALCULATOR###################################################################
+
+
 def new_window2():
     newWindow2 = Toplevel(root)
+    display = Label(newWindow2, width= 30, height= 10)
+    
 
     def reset_entry():
         exercise_tf.delete(0,'end')
@@ -151,7 +147,7 @@ def new_window2():
             global waterGoal
             water = waterGoal
 
-
+    Label(newWindow2,text="Water Calculator",font=("Helvetica 15 bold"),fg="#001853").pack(pady = 2) #labels
     var = IntVar()
 
     frame = Frame(
@@ -247,33 +243,6 @@ def new_window2():
     reset_btn.pack(side=LEFT)
 
 
-
-###########################################WATERBOTTLE#########################################################################
-root.title("Water Intake Tracker") #name of the app, shows up at the top
-# Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
-# Robert: c:\Users\rflor\Downloads\blackbottle.png
-# Kyra: c:\Users\kyra\Downloads\blackbottle.png
-# root.config(bg="#99A2BA") TO ADD BG COLOR (ON HOLD)
-
-def update_image():
-    global sum, goal
-
-    sum_percent = sum / goal if goal != 0 else 0.0
-
-    if 0.25 <= sum_percent < 0.5:
-        canvas.itemconfig(image_on_canvas, image=quarter_filled_bottle)
-    elif 0.5 <= sum_percent < 0.75:
-        canvas.itemconfig(image_on_canvas, image=half_filled_bottle)
-    elif 0.75 <= sum_percent < 1:
-        canvas.itemconfig(image_on_canvas, image=three_quarter_filled_bottle)
-    elif sum_percent >= 1:
-        canvas.itemconfig(image_on_canvas, image=full_bottle)
-    else:
-        canvas.itemconfig(image_on_canvas, image=empty_bottle)
-
-###############################################################
-root.geometry("410x580")
-
 message_label = Label(root, text="                  ", 
 wraplength=20)
 frame4 = tk.Frame(root)
@@ -289,57 +258,122 @@ button2.grid(row=0, column=2)
 Upper_left = tk.Label(button1)
 Upper_left.place(relx = 1.0, rely = 1000.0, anchor ='n')
 
+#############################################WATERBOTTLE############################################################################
+
+root.title("Water Intake Tracker") #name of the app, shows up at the top
+# Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
+# Robert: c:\Users\rflor\Downloads\blackbottle.png
+# Kyra: c:\Users\kyra\Downloads\blackbottle.png
+# root.config(bg="#99A2BA") TO ADD BG COLOR (ON HOLD)
+
+sum_percent = 0.0
+
+def combined_functions():
+    submit()
+    update_image()
+
+def update_image():
+    global sum, goal, sum_percent
+
+    sum_percent = sum / goal if goal != 0 else 1
+
+    if sum_percent >= 0.125 and sum_percent < 0.25:
+        canvas.itemconfig(image_on_canvas, image= one_eighth_bottle)
+        print('Water bottle at: 25')
+        print(goal) 
+
+    
+    
+    elif sum_percent >= 0.25 and sum_percent < 0.375:
+        canvas.itemconfig(image_on_canvas, image=quarter_filled_bottle)
 
 
-################################################################
+
+    elif sum_percent >= 0.375 and sum_percent < 0.5:
+        canvas.itemconfig(image_on_canvas, image=three_eighth_bottle)
+        print('Water bottle at: 50')
+        print(goal) 
 
 
 
+    elif sum_percent >= 0.5 and sum_percent < 0.625:
+        canvas.itemconfig(image_on_canvas, image=half_filled_bottle)
+
+
+
+    elif sum_percent >= 0.625 and sum_percent < 0.75:
+        canvas.itemconfig(image_on_canvas, image=five_eighth_bottle)
+        print('Water bottle at: 75')
+        print(goal) 
+
+
+
+    elif sum_percent >= 0.75 and sum_percent < 0.875:
+        canvas.itemconfig(image_on_canvas, image=three_quarter_filled_bottle)
+
+
+
+    elif sum_percent >= 0.875 and sum_percent < 1.0:
+        canvas.itemconfig(image_on_canvas, image=seven_eighth_bottle)
+        print('Water bottle at: 100')
+        print(goal) 
+
+    elif sum_percent >= 1.0:
+        canvas.itemconfig(image_on_canvas, image=full_bottle)
+
+    elif sum_percent < 0.125:
+        canvas.itemconfig(image_on_canvas, image=empty_bottle)
+        print('Water bottle at: empty')
+        print(sum_percent)    
+
+    print ('percent is:' + str(sum_percent))
+    return sum_percent
+    
 
 empty_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\blackbottle.png")
+one_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-eighth.png")
 quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle25.png")
+three_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-3-eighth.png")
 half_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle50.png")
+five_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-5-eighth.png")
 three_quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle75.png")
+seven_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-7-eighth.png")
 full_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle100.png")
 
 canvas = tk.Canvas(root, width=200, height=300)
 canvas.pack(side='top', fill='both', expand='yes')
 
-image_on_canvas = canvas.create_image(5, 5, image = empty_bottle, anchor='nw')
+image_on_canvas = canvas.create_image(10, 0, image = empty_bottle, anchor='nw') #had to change the coords cus the water bottle was blocked for me
 
+
+
+##########################################USERINPUT##########################################################################
 import tkinter as tk
+
 
 sum = 0
 goal = 0 #goal will be depending on what the user inputs from the calculator
 
+
 def submit():
-    global sum  # made global so it can be used everywhere
+    global sum,sum_percent  # made global so it can be used everywhere
     entered_oz = int(float(text_entry.get())) 
     sum += entered_oz  # Adds entered_oz to the sum
     print(sum)  #within context of the Water Tracker, instead of printing to the terminal we can have a text box w the 'sum' variable so it changes depending on inputs
-    sum_label.config(text= 'Daily Water Intake: ' + str(sum))
+    sum_percent = sum / goal if goal != 0 else 1
+    
+    if sum_percent < 1:
+        sum_label.config(text= 'Daily Water Intake: ' + str(sum) + '   ' + 'Target Water Intake: ' + str(goal)+ '   ' + 'Progress Percentage: ' + str(float(sum_percent)*100) + '%')
+    else:
+        sum_label.config(text= 'Daily Water Intake: ' + str(sum) + '   ' + 'Target Water Intake: ' + str(goal)+ '   ' + 'Progress Percentage: ' + '100' + '%')
+    print ('percent is:' + str(sum_percent))
 
 
-
-if sum >= goal/4 and sum < goal/2:
-    #code: make water bottle go to 25%
-    print('') #all the prints are just so that the rest of the code runs fine
-
-if sum >= goal/2 and sum < goal - goal/4:
-    #code: make water bottle go to 50%
-    print('')
-
-if sum >= goal - goal/4 and sum < goal:
-    #code: make water bottle go to 75%
-    print('')
-
-if sum >= goal:
-    #code: make water bottle go to 100% and add congratulation message thingy
-    print('')
-
-
-
-
+def goalIntake():   #supposed to display goal as soon as its calculated, can't figure out yet
+    
+    sum_label = tk.Label(root, text='Daily Water Intake: '+ str(sum) + '   ' + 'Target Water Intake: ' + str(goal)+ '   ' + 'Progress Percentage: ' + str(float(sum_percent)*100) + '%')  # Label to display the sum
+    sum_label.pack(pady=1) 
+    print ('percent is:' + str(sum_percent))
 
 frame1 = tk.Frame(root)
 frame1.pack(pady=10)
@@ -350,16 +384,24 @@ text_label.grid(row=0, column=0)
 text_entry = tk.Entry(frame1)
 text_entry.grid(row=0, column=1)
 
-submit_button = tk.Button(root, text="Submit", command=submit) #makes submit button work
+submit_button = tk.Button(root, text="Submit", command=combined_functions)
+ #makes submit button work
 submit_button.pack(pady=1)
 
-sum_label = tk.Label(root, text='Daily Water Intake: '+ str(sum))  # Label to display the sum
+sum_label = tk.Label(root, text='Daily Water Intake: '+ str(sum) + '   ' + 'Target Water Intake: ' + str(goal) + '   ' + 'Progress Percentage: ' + str(float(sum_percent)*100) + '%')  # Label to display the sum
 sum_label.pack(pady=1)
+print ('percent is:' + str(sum_percent))
 
+indicator = False
 
-message_label = Label(root, text="                  ", 
-wraplength=20)
-message_label.pack()
+if indicator == True:
+    goalIntake()
 
+####################################################################################################################
 
-root.mainloop() # Runs the main window loop
+mspace = Label(root, text="         ", anchor = "sw", pady=5)
+mspace.pack()
+
+ 
+
+root.mainloop()
