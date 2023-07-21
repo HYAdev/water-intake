@@ -34,7 +34,7 @@ def new_window():
         
             if current_time == set_alarm_time: #kinda self explanatory 
                 pygame.mixer.init()
-                pygame.mixer.music.load('notification.mp3')
+                pygame.mixer.music.load('alarmsound.mp3')
                 pygame.mixer.music.play()
 
                 # allows the file to finish playing
@@ -253,7 +253,7 @@ button1 = Button(frame4, text ="Water Calculator", command=new_window2, width=16
 bg="gold")
 button1.grid(row=0, column=1, padx= 5)
 
-button2 = Button(frame4, text ="Water Reminder", command=new_window, width=16, 
+button2 = Button(frame4, text ="Hydration Reminder", command=new_window, width=16, 
 bg="gold")
 button2.grid(row=0, column=2)
 Upper_left = tk.Label(button1)
