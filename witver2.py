@@ -2,7 +2,7 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.geometry("400x570") #how big is the window
+root.geometry("420x570") #how big is the window
 #################################################ALARM###################################################################
 
 from tkinter import *
@@ -40,8 +40,8 @@ def new_window():
                 # allows the file to finish playing
                 while pygame.mixer.music.get_busy():
                     pygame.time.Clock().tick(10)
-                account_sid = "enter sid"
-                auth_token  = "enter auth"
+                account_sid = "AC189a5cc4f644e8cb6f52b29d95e4d2fe"
+                auth_token  = "3bdb0433f69c8a8d04f3603396d85da6"
                 global pnumber
                 client = Client(account_sid, auth_token)
                 message = client.messages.create(
@@ -331,15 +331,15 @@ def update_image():
     return sum_percent
     
 
-empty_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\blackbottle.png")
-one_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-eighth.png")
-quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle25.png")
-three_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-3-eighth.png")
-half_filled_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle50.png")
-five_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-5-eighth.png")
-three_quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle75.png")
-seven_eighth_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle-7-eighth.png")
-full_bottle = tk.PhotoImage(file=r"c:\Users\rflor\Downloads\bottle100.png")
+empty_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\blackbottle.png")
+one_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-eighth.png")
+quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle25.png")
+three_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-3-eighth.png")
+half_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle50.png")
+five_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-5-eighth.png")
+three_quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle75.png")
+seven_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-7-eighth.png")
+full_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle100.png")
 
 canvas = tk.Canvas(root, width=200, height=300)
 canvas.pack(side='top', fill='both', expand='yes')
