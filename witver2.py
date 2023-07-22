@@ -2,13 +2,13 @@ import tkinter as tk
 
 root = tk.Tk()
 
-root.geometry("420x570") #how big is the window
+root.geometry("420x570")
+
 #################################################ALARM###################################################################
 
 from tkinter import *
 import datetime
 import time
-import winsound
 from threading import *
 from twilio.rest import Client
 import pygame.mixer
@@ -34,7 +34,7 @@ def new_window():
         
             if current_time == set_alarm_time: #kinda self explanatory 
                 pygame.mixer.init()
-                pygame.mixer.music.load('alarmsound.mp3')
+                pygame.mixer.music.load('water-intake/alarmsound.mp3')
                 pygame.mixer.music.play()
 
                 # allows the file to finish playing
@@ -45,7 +45,7 @@ def new_window():
                 global pnumber
                 client = Client(account_sid, auth_token)
                 message = client.messages.create(
-                body="DRINK WATER", from_="+18332943083", to='+'+ pnumber
+                body="DRINK WATER", from_="+18332943083", to='+1'+ pnumber
                 
                 )
                 break
@@ -55,13 +55,6 @@ def new_window():
         if not pnumber.strip(): #checks and see if pnumber is empty
             print("Enter a valid phone number")
             print(pnumber)
-
-
-            
-
-            
-            
- 
 
    Label(newWindow,text="Hydration Reminder",font=("Helvetica 15 bold"),fg="#001853").pack(pady = 2) #labels
    Label(newWindow,text="Set Time",font=("Helvetica 10 bold")).pack()
@@ -122,12 +115,10 @@ from tkinter import messagebox
 
 #################################################CALCULATOR###################################################################
 
-
 def new_window2():
     newWindow2 = Toplevel(root)
     display = Label(newWindow2, width= 30, height= 10)
     
-
     def reset_entry():
         exercise_tf.delete(0,'end')
         weight_tf.delete(0,'end')
@@ -157,10 +148,6 @@ def new_window2():
     pady=10
 )
     frame.pack(expand=False)
-
-
-
-
 
     age_lb = Label( #displays the text below
     frame,
@@ -243,7 +230,6 @@ def new_window2():
 )
     reset_btn.pack(side=LEFT)
 
-
 message_label = Label(root, text="                  ", 
 wraplength=20)
 frame4 = tk.Frame(root)
@@ -262,9 +248,6 @@ Upper_left.place(relx = 1.0, rely = 1000.0, anchor ='n')
 #############################################WATERBOTTLE############################################################################
 
 root.title("Water Intake Tracker") #name of the app, shows up at the top
-# Haiyan: /Users/hyena/Documents/Code/Programming/water-intake/blackbottle.png
-# Robert: c:\Users\rflor\Downloads\blackbottle.png
-# Kyra: c:\Users\kyra\Downloads\blackbottle.png
 # root.config(bg="#99A2BA") TO ADD BG COLOR (ON HOLD)
 
 sum_percent = 0.0
@@ -282,37 +265,25 @@ def update_image():
         canvas.itemconfig(image_on_canvas, image= one_eighth_bottle)
         print('Water bottle at: 25')
         print(goal) 
-
-    
     
     elif sum_percent >= 0.25 and sum_percent < 0.375:
         canvas.itemconfig(image_on_canvas, image=quarter_filled_bottle)
-
-
 
     elif sum_percent >= 0.375 and sum_percent < 0.5:
         canvas.itemconfig(image_on_canvas, image=three_eighth_bottle)
         print('Water bottle at: 50')
         print(goal) 
 
-
-
     elif sum_percent >= 0.5 and sum_percent < 0.625:
         canvas.itemconfig(image_on_canvas, image=half_filled_bottle)
-
-
 
     elif sum_percent >= 0.625 and sum_percent < 0.75:
         canvas.itemconfig(image_on_canvas, image=five_eighth_bottle)
         print('Water bottle at: 75')
         print(goal) 
 
-
-
     elif sum_percent >= 0.75 and sum_percent < 0.875:
         canvas.itemconfig(image_on_canvas, image=three_quarter_filled_bottle)
-
-
 
     elif sum_percent >= 0.875 and sum_percent < 1.0:
         canvas.itemconfig(image_on_canvas, image=seven_eighth_bottle)
@@ -330,31 +301,26 @@ def update_image():
     print ('percent is:' + str(sum_percent))
     return sum_percent
     
-
-empty_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\blackbottle.png")
-one_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-eighth.png")
-quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle25.png")
-three_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-3-eighth.png")
-half_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle50.png")
-five_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-5-eighth.png")
-three_quarter_filled_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle75.png")
-seven_eighth_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle-7-eighth.png")
-full_bottle = tk.PhotoImage(file=r"c:\Users\kyra\Downloads\bottle100.png")
+empty_bottle = tk.PhotoImage(file="water-intake/blackbottle.png")
+one_eighth_bottle = tk.PhotoImage(file="water-intake/bottle-eighth.png")
+quarter_filled_bottle = tk.PhotoImage(file="water-intake/bottle25.png")
+three_eighth_bottle = tk.PhotoImage(file="water-intake/bottle-3-eighth.png")
+half_filled_bottle = tk.PhotoImage(file="water-intake/bottle50.png")
+five_eighth_bottle = tk.PhotoImage(file="water-intake/bottle-5-eighth.png")
+three_quarter_filled_bottle = tk.PhotoImage(file="water-intake/bottle75.png")
+seven_eighth_bottle = tk.PhotoImage(file="water-intake/bottle-7-eighth.png")
+full_bottle = tk.PhotoImage(file="water-intake/bottle100.png")
 
 canvas = tk.Canvas(root, width=200, height=300)
 canvas.pack(side='top', fill='both', expand='yes')
 
 image_on_canvas = canvas.create_image(10, 0, image = empty_bottle, anchor='nw') #had to change the coords cus the water bottle was blocked for me
 
-
-
 ##########################################USERINPUT##########################################################################
 import tkinter as tk
 
-
 sum = 0
 goal = 0 #goal will be depending on what the user inputs from the calculator
-
 
 def submit():
     global sum,sum_percent  # made global so it can be used everywhere
@@ -402,7 +368,5 @@ if indicator == True:
 
 mspace = Label(root, text="         ", anchor = "sw", pady=5)
 mspace.pack()
-
- 
 
 root.mainloop()
