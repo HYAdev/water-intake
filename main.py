@@ -20,33 +20,25 @@ def new_window():
     t1.start()
 
    def alarm():
-    
         while True:
-        
             set_alarm_time = f"{hour.get()}:{minute.get()}" #gets the time
- 
-        
             time.sleep(1)
- 
-        
             current_time = datetime.datetime.now().strftime("%H:%M") #Hour and minute
- 
-        
             if current_time == set_alarm_time: #kinda self explanatory 
                 pygame.mixer.init()
-                pygame.mixer.music.load('water-intake/alarmsound.mp3')
+                pygame.mixer.music.load('water-intake/assets/alarmsound.mp3')
                 pygame.mixer.music.play()
-
-                # allows the file to finish playing
+                
                 while pygame.mixer.music.get_busy():
                     pygame.time.Clock().tick(10)
-                account_sid = "AC189a5cc4f644e8cb6f52b29d95e4d2fe"
-                auth_token  = "3bdb0433f69c8a8d04f3603396d85da6"
+                
+                account_sid = "AC189a5cc4f644e8cb6f52b29d95e4d2fe" #replace with your own account sid
+                auth_token  = "3bdb0433f69c8a8d04f3603396d85da6" #replace with your own auth token
                 global pnumber
                 client = Client(account_sid, auth_token)
-                message = client.messages.create(
-                body="DRINK WATER", from_="+18332943083", to='+1'+ pnumber
                 
+                message = client.messages.create(
+                body="DRINK WATER", from_="+18332943083", to='+1'+ pnumber #replace with your own twilio number in from_
                 )
                 break
    def send_message():
@@ -92,21 +84,15 @@ def new_window():
    def send_message():
         global pnumber
         pnumber = number.get()
-        if not pnumber.strip(): #checks and see if pnumber is empty
+        if not pnumber.strip():
             print("Enter a valid phone number")
             print(pnumber)
 
    Button(newWindow,text="Set Reminder",font=("Helvetica 10"),command=Threading).pack(side= BOTTOM, pady=5)
-
-
    label = tk.Label(newWindow, text='Enter your phone number(include country code)')
    number = tk.Entry(newWindow)
    number.focus_set()
    send_text = tk.Button(newWindow, text='Submit', command=send_message).pack(side=BOTTOM, padx=1, pady=5)
-
-
-
-
    label.pack(side = tk.TOP)
    number.pack()
 
@@ -118,7 +104,7 @@ from tkinter import messagebox
 def new_window2():
     newWindow2 = Toplevel(root)
     display = Label(newWindow2, width= 30, height= 10)
-    
+
     def reset_entry():
         exercise_tf.delete(0,'end')
         weight_tf.delete(0,'end')
@@ -133,7 +119,6 @@ def new_window2():
         water_index(water)
 
     def water_index(water): #makes the popup that tells how much water u should drink, isnt necessary to have the > 0 but it was easier for me
-    
         if water > 0:
             messagebox.showinfo('Water Intake Tracker', f'suggested daily hydration = {water} oz') 
             global waterGoal
@@ -258,58 +243,57 @@ def combined_functions():
 
 def update_image():
     global sum, goal, sum_percent
-
     sum_percent = sum / goal if goal != 0 else 1
 
     if sum_percent >= 0.125 and sum_percent < 0.25:
         canvas.itemconfig(image_on_canvas, image= one_eighth_bottle)
-        print('Water bottle at: 25')
-        print(goal) 
+        # print('Water bottle at: 25')
+        # print(goal) 
     
     elif sum_percent >= 0.25 and sum_percent < 0.375:
         canvas.itemconfig(image_on_canvas, image=quarter_filled_bottle)
 
     elif sum_percent >= 0.375 and sum_percent < 0.5:
         canvas.itemconfig(image_on_canvas, image=three_eighth_bottle)
-        print('Water bottle at: 50')
-        print(goal) 
+        # print('Water bottle at: 50')
+        # print(goal) 
 
     elif sum_percent >= 0.5 and sum_percent < 0.625:
         canvas.itemconfig(image_on_canvas, image=half_filled_bottle)
 
     elif sum_percent >= 0.625 and sum_percent < 0.75:
         canvas.itemconfig(image_on_canvas, image=five_eighth_bottle)
-        print('Water bottle at: 75')
-        print(goal) 
+        # print('Water bottle at: 75')
+        # print(goal) 
 
     elif sum_percent >= 0.75 and sum_percent < 0.875:
         canvas.itemconfig(image_on_canvas, image=three_quarter_filled_bottle)
 
     elif sum_percent >= 0.875 and sum_percent < 1.0:
         canvas.itemconfig(image_on_canvas, image=seven_eighth_bottle)
-        print('Water bottle at: 100')
-        print(goal) 
+        # print('Water bottle at: 100')
+        # print(goal) 
 
     elif sum_percent >= 1.0:
         canvas.itemconfig(image_on_canvas, image=full_bottle)
 
     elif sum_percent < 0.125:
         canvas.itemconfig(image_on_canvas, image=empty_bottle)
-        print('Water bottle at: empty')
-        print(sum_percent)    
+        # print('Water bottle at: empty')
+        # print(sum_percent)    
 
-    print ('percent is:' + str(sum_percent))
+    # print ('percent is:' + str(sum_percent))
     return sum_percent
     
-empty_bottle = tk.PhotoImage(file="water-intake/blackbottle.png")
-one_eighth_bottle = tk.PhotoImage(file="water-intake/bottle-eighth.png")
-quarter_filled_bottle = tk.PhotoImage(file="water-intake/bottle25.png")
-three_eighth_bottle = tk.PhotoImage(file="water-intake/bottle-3-eighth.png")
-half_filled_bottle = tk.PhotoImage(file="water-intake/bottle50.png")
-five_eighth_bottle = tk.PhotoImage(file="water-intake/bottle-5-eighth.png")
-three_quarter_filled_bottle = tk.PhotoImage(file="water-intake/bottle75.png")
-seven_eighth_bottle = tk.PhotoImage(file="water-intake/bottle-7-eighth.png")
-full_bottle = tk.PhotoImage(file="water-intake/bottle100.png")
+empty_bottle = tk.PhotoImage(file="water-intake/assets/blackbottle.png")
+one_eighth_bottle = tk.PhotoImage(file="water-intake/assets/bottle-eighth.png")
+quarter_filled_bottle = tk.PhotoImage(file="water-intake/assets/bottle25.png")
+three_eighth_bottle = tk.PhotoImage(file="water-intake/assets/bottle-3-eighth.png")
+half_filled_bottle = tk.PhotoImage(file="water-intake/assets/bottle50.png")
+five_eighth_bottle = tk.PhotoImage(file="water-intake/assets/bottle-5-eighth.png")
+three_quarter_filled_bottle = tk.PhotoImage(file="water-intake/assets/bottle75.png")
+seven_eighth_bottle = tk.PhotoImage(file="water-intake/assets/bottle-7-eighth.png")
+full_bottle = tk.PhotoImage(file="water-intake/assets/bottle100.png")
 
 canvas = tk.Canvas(root, width=200, height=300)
 canvas.pack(side='top', fill='both', expand='yes')
@@ -333,14 +317,14 @@ def submit():
         sum_label.config(text= 'Daily Water Intake: ' + str(sum) + '   ' + 'Target Water Intake: ' + str(round((goal),1))+ '   ' + 'Progress Percentage: ' + str(round((float(sum_percent)*100), 1)) + '%')
     else:
         sum_label.config(text= 'Daily Water Intake: ' + str(sum) + '   ' + 'Target Water Intake: ' + str(round((goal),1))+ '   ' + 'Progress Percentage: ' + '100' + '%')
-    print ('percent is:' + str(sum_percent))
+    # print ('percent is:' + str(sum_percent))
 
 
 def goalIntake():   #supposed to display goal as soon as its calculated, can't figure out yet
     
     sum_label = tk.Label(root, text='Daily Water Intake: '+ str(sum) + '   ' + 'Target Water Intake: ' + str(round((goal),1))+ '   ' + 'Progress Percentage: ' + str(round((float(sum_percent)*100), 1)) + '%')  # Label to display the sum
     sum_label.pack(pady=1) 
-    print ('percent is:' + str(sum_percent))
+    # print ('percent is:' + str(sum_percent))
 
 frame1 = tk.Frame(root)
 frame1.pack(pady=10)
@@ -357,7 +341,7 @@ submit_button.pack(pady=1)
 
 sum_label = tk.Label(root, text='Daily Water Intake: '+ str(sum) + '   ' + 'Target Water Intake: ' + str(goal) + '   ' + 'Progress Percentage: ' + str(round((float(sum_percent)*100), 1)) + '%')  # Label to display the sum
 sum_label.pack(pady=1)
-print ('percent is:' + str(sum_percent))
+# print ('percent is:' + str(sum_percent))
 
 indicator = False
 
@@ -368,5 +352,4 @@ if indicator == True:
 
 mspace = Label(root, text="         ", anchor = "sw", pady=5)
 mspace.pack()
-
 root.mainloop()
