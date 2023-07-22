@@ -15,6 +15,7 @@ import pygame.mixer
 
 def new_window(): 
    newWindow = Toplevel(root)
+   
    def Threading():
     t1=Thread(target=alarm)
     t1.start()
@@ -41,12 +42,12 @@ def new_window():
                 body="DRINK WATER", from_="+18332943083", to='+1'+ pnumber #replace with your own twilio number in from_
                 )
                 break
+
    def send_message():
         global pnumber
         pnumber = number.get()
         if not pnumber.strip(): #checks and see if pnumber is empty
             print("Enter a valid phone number")
-            print(pnumber)
 
    Label(newWindow,text="Hydration Reminder",font=("Helvetica 15 bold"),fg="#001853").pack(pady = 2) #labels
    Label(newWindow,text="Set Time",font=("Helvetica 10 bold")).pack()
